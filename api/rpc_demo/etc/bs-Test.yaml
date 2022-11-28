@@ -1,0 +1,26 @@
+Name: user-api
+Host: 0.0.0.0
+Port: 8888
+
+MysqlDB:
+  DataSource:  root:123456@tcp(192.168.0.214:32432)/bsmaster?charset=utf8
+
+Redis:
+  - Host: 192.168.0.247:30279
+
+#日志配置
+Log:
+  ServiceName: bs-Test
+  Mode: file # console,file,volume
+  Level: info #debug,info,error,severe
+  Path: ./api/logs # 如果log为file,log存储路径
+  Encoding: plain #json一行不好看,plain
+  Compress: True #几天的日志打压缩包
+  KeepDays: 3 #保留几天的日志
+
+# rpc配置
+UserRpcConf:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc

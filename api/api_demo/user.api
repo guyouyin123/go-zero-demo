@@ -1,0 +1,58 @@
+// api语法版本
+syntax = "v1"
+
+info(
+	author: "jeff"
+	date: "2022-11-10"
+	desc: "api语法示例及语法说明"
+)
+
+type (
+	UserInfoRes {
+		UserId int `json:"userId"`
+	}
+	UserInfoReq {
+		UserId int    `json:"userId"`
+		Name   string `json:"name"`
+	}
+)
+
+@server(
+	group : user //文件夹分组，handler和logic分组放
+	prefix: dev/v1 //路由分组，全路径：dev/v1/user/info
+	middleware: TestMiddleware //局部中间件
+)
+service BS-test {
+	@doc "获取用户信息"
+	@handler userInfo
+	post /user/info (UserInfoRes) returns (UserInfoReq)
+	@doc "rpc获取用户信息"
+	@handler RpcUserInfo
+	post /rpc/user/info (UserInfoRes) returns (UserInfoReq)
+}
+
+type (
+	BikeInfoRes {
+		BikeId int `form:"bikeId"` //get请求url传参数
+	}
+	BikeInfoReq {
+		BikeId   int    `json:"bikeId"`
+		BikeName string `json:"bikeName"`
+	}
+	Res {
+		State     string `json:"state"`
+		StateInfo string `json:"stateInfo"`
+	}
+)
+@server(
+	group : bike
+	prefix: dev/v1
+)
+service BS-test {
+	@doc "获取车辆信息"
+	@handler bikeInfo //获取车辆信息
+	get /bike/info (BikeInfoRes) returns (BikeInfoReq)
+	@doc "添加车辆"
+	@handler bikeInsert //添加车辆
+	post /bike/insert (BikeInfoReq) returns (Res)
+}
