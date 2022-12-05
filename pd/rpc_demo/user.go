@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 
+	"context"
 	"go-zero-demo/pd/rpc_demo/internal/config"
 	"go-zero-demo/pd/rpc_demo/internal/server"
 	"go-zero-demo/pd/rpc_demo/internal/svc"
@@ -34,6 +35,16 @@ func main() {
 	})
 	defer s.Stop()
 
+	s.AddUnaryInterceptors(TestInterceptors) //rpc添加服务端拦截器
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
 	s.Start()
+}
+
+func TestInterceptors(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
+	fmt.Println("====rpc服务端拦截器之前====")
+	fmt.Println("====req:", req)
+	fmt.Println("====info:", info)
+	resp, err = handler(ctx, req)
+	fmt.Println("====rpc服务端拦截器之后====")
+	return resp, err
 }

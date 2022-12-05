@@ -24,6 +24,7 @@ def user_rpc_main2():
         'Content-Type': 'application/json'
     }
 
+
     res = requests.post(url,headers=headers,data=json.dumps(data))
     print(res.text)
 
@@ -50,6 +51,8 @@ def main3():
     print(res.text)
 
 
+
+
+
 if __name__ == '__main__':
     user_rpc_main2()
-    # main2()

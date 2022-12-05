@@ -18,9 +18,14 @@ Log:
   Compress: True #几天的日志打压缩包
   KeepDays: 3 #保留几天的日志
 
-# rpc配置
+# rpc的配置
 UserRpcConf:
-  Etcd:
-    Hosts:
-      - 127.0.0.1:2379
-    Key: user.rpc
+#  Target: k8s://namespace/rpc_service_name:port # k8s方式:k8s的service负载
+
+  Endpoints:   # 直连方式：需要维护Endpoints数组保持负载均衡
+    - 127.0.0.1:8081
+
+#  Etcd:        # etcd方式：通过etcd自动负载均衡方式
+#    Hosts:
+#      - 127.0.0.1:2379
+#    Key: user.rpc

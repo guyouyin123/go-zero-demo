@@ -2,11 +2,13 @@ package logic
 
 import (
 	"context"
+	"fmt"
 
 	"go-zero-demo/pd/rpc_demo/internal/svc"
 	"go-zero-demo/pd/rpc_demo/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
+	"google.golang.org/grpc/metadata"
 )
 
 type RpcGetUserInfoLogic struct {
@@ -24,7 +26,11 @@ func NewRpcGetUserInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Rp
 }
 
 func (l *RpcGetUserInfoLogic) RpcGetUserInfo(in *pb.GetUserInfoRes) (*pb.GetUserInfoReq, error) {
-	// todo: add your logic here and delete this line
+
+	if md,ok:=metadata.FromIncomingContext(l.ctx);ok{
+		tmp:=md.Get("user")  //类似于网管，接收业务传过来端值
+		fmt.Println("rpc客户端传过来端值：",tmp)
+	}
 
 	m := map[int64]string{
 		1: "Jeff",
