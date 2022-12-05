@@ -1,5 +1,4 @@
 [toc]
-
 # 文档
 
 ```go
@@ -57,7 +56,7 @@ goctl kube deploy --name user --namespace sg-bs -image user:latest  -o user.yml 
 
 通过表反向自动生成模型，包含表的增删改查
 
-**userModel.sh chmod 777 userModel.sh** 
+**userModel.sh chmod 777 userModel.sh**
 
 ```sh
 #!/usr/bin/env bash
@@ -107,4 +106,27 @@ gRPC Web UI available at http://127.0.0.1:60551/...
 ```
 
 ![](https://img2023.cnblogs.com/blog/1736414/202211/1736414-20221127222544843-1555555890.png)
+
+# validator参数校验
+
+```go
+go get github.com/go-playground/validator/v10
+
+//api文件
+type (
+	UserInfoRes {
+		UserId int `json:"userId" validate:"gte=30,lte=100"` // validate参数校验
+	}
+	UserInfoReq {
+		UserId int    `json:"userId"`
+		Name   string `json:"name"`
+	}
+)
+
+//handler文件
+if err :=  validator.New().StructCtx(r.Context(),req);err!=nil{
+			httpx.Error(w, err)
+			return
+		}
+```
 
