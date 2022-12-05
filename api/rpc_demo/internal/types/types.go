@@ -2,7 +2,7 @@
 package types
 
 type UserInfoRes struct {
-	UserId int `json:"userId"`
+	UserId int `json:"userId" validate:"gte=30,lte=100"` // validate参数校验
 }
 
 type UserInfoReq struct {

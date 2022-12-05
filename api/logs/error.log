@@ -1,0 +1,36 @@
+2022-12-05T22:32:41.463+08:00	[31;1m error [0m	[HTTP] [103;90;1m 503 [0m - [46;97;1m POST [0m /dev/v1/user/info - 127.0.0.1:49157 - python-requests/2.26.0
+POST /dev/v1/user/info HTTP/1.1
+Host: 127.0.0.1:8888
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Length: 14
+Content-Type: application/json
+User-Agent: python-requests/2.26.0
+
+{"userId": 99}	duration=3005.3ms	caller=handler/loghandler.go:198	trace=5425bfa27653f804ea5ef6f9d2a7c82b	span=97d2d30986eba587
+2022-12-05T22:32:51.366+08:00	[31;1m error [0m	[HTTP] [103;90;1m 503 [0m - [46;97;1m POST [0m /dev/v1/user/info - 127.0.0.1:49168 - python-requests/2.26.0
+POST /dev/v1/user/info HTTP/1.1
+Host: 127.0.0.1:8888
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Length: 14
+Content-Type: application/json
+User-Agent: python-requests/2.26.0
+
+{"userId": 99}	duration=3001.6ms	caller=handler/loghandler.go:198	trace=6a28fdf659c670d81ea46e008ea8d843	span=c90fd0b853c5078f
+2022-12-05T22:33:04.314+08:00	[31;1m error [0m	[HTTP] [103;90;1m 503 [0m - [46;97;1m POST [0m /dev/v1/user/info - 127.0.0.1:49180 - python-requests/2.26.0
+POST /dev/v1/user/info HTTP/1.1
+Host: 127.0.0.1:8888
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Length: 14
+Content-Type: application/json
+User-Agent: python-requests/2.26.0
+
+{"userId": 40}	duration=3004.0ms	caller=handler/loghandler.go:198	trace=19a0f1778b13feb1f11806a89b5bb1d0	span=76f9a9d09a7c4bf5
+2022-12-05T22:33:53.958+08:00	[31;1m error [0m	Error on getting sql instance of tcp(192.168.0.214:32432)/bsmaster?charset=utf8: dial tcp 192.168.0.214:32432: connect: operation timed out	caller=sqlx/utils.go:135
+2022-12-05T22:33:53.959+08:00	[31;1m error [0m	stmt: select `id`,`name` from `users` where `id` = 40 limit 1, error: context deadline exceeded	caller=sqlx/utils.go:140	trace=19a0f1778b13feb1f11806a89b5bb1d0	span=3a06cf5ce5f0b569
+2022-12-05T22:33:53.959+08:00	[31;1m error [0m	stmt: select `id`,`name` from `users` where `id` = 99 limit 1, error: context deadline exceeded	caller=sqlx/utils.go:140	trace=6a28fdf659c670d81ea46e008ea8d843	span=e661dd9cc683fd12

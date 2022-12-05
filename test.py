@@ -6,7 +6,7 @@ import requests
 def user_main1():
     url = "http://127.0.0.1:8888/dev/v1/user/info"
     data = {
-        "userId":1
+        "userId":40
     }
     headers = {
         'Content-Type': 'application/json'
@@ -55,4 +55,4 @@ def main3():
 
 
 if __name__ == '__main__':
-    user_rpc_main2()
+    user_main1()
