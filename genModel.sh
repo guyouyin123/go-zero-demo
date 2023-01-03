@@ -12,14 +12,18 @@ tables=$2
 modeldir=./${tables}Model
 
 # 数据库配置
-host=192.168.0.214
-port=32432
+host=192.168.0.247
+port=32433
 dbname=$1 # 库名
-username=root
-passwd=123456
+username=postgres
+passwd=iLoveShark
+cache=false # 如果需要redis则打开
 
 
 echo "开始创建库：$dbname 的表：$tables"
-goctl model mysql datasource -url="${username}:${passwd}@tcp(${host}:${port})/${dbname}" -table="${tables}"  -dir="${modeldir}" -cache=true --style=goZero
+#mysql
+#goctl model mysql datasource -url="${username}:${passwd}@tcp(${host}:${port})/${dbname}" -table="${tables}"  -dir="${modeldir}" -cache=${cache} --style=goZero
 
-#-cache=false 如果需要redis则打开
+#postgres
+goctl model pg datasource -url="postgres://${username}:${passwd}@${host}:${port}/${dbname}?sslmode=disable" -table="${tables}"  -dir="${modeldir}" -cache=${cache} --style=goZero
+
